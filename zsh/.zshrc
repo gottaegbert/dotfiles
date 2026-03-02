@@ -263,3 +263,10 @@ gproj-data() {
 gproj-note() {
   gproj "${1:-$PWD}" "Gruvbox Dark Hard"
 }
+
+# Quick project launchers (Ghostty + theme)
+alias gw='gproj-web /Users/tars/Downloads/project/tars/whothree'
+alias gf='gproj-data /Users/tars/Downloads/project/tars/frontend'
+alias gm='gproj-note /Users/tars/Downloads/project/tars/mainlife'
+alias gi='gproj-web /Users/tars/Downloads/project/tars/influence-demo'
+alias gr='gproj-web /Users/tars/Downloads/project/tars/siyu-resume-web'
