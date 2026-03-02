@@ -193,7 +193,18 @@ export PATH="$HOME/.local/bin:$PATH"
 # opencode
 export PATH=/Users/tars/.opencode/bin:$PATH
 
-# Ghostty: open project in a new window with project-specific theme.
+# OpenClaw Completion
+source "/Users/tars/.openclaw/completions/openclaw.zsh"
+
+# Local machine/private overrides (not tracked)
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# Ghostty project theme launcher
+# Usage:
+#   gproj <path> [Theme Name]
+#   gproj-web [path]
+#   gproj-data [path]
+#   gproj-note [path]
 typeset -gA GHOSTTY_PROJECT_THEMES
 GHOSTTY_PROJECT_THEMES=(
   "/Users/tars/Downloads/project/tars" "Vesper"
@@ -215,26 +226,19 @@ gproj() {
 
   local theme="$custom_theme"
   if [[ -z "$theme" ]]; then
-    # Company projects use a single blue theme.
-    if [[ "$abs_target" == *"/frontend"* || "$abs_target" == *"/tars-official-website"* || "$abs_target" == *"/tars-official website"* ]]; then
-      theme="TokyoNight Storm"
-    fi
-
+    local key
     local best_key=""
-    if [[ -z "$theme" ]]; then
-      local key
-      for key in "${(@k)GHOSTTY_PROJECT_THEMES}"; do
-        if [[ "$abs_target" == "$key" || "$abs_target" == "$key/"* ]]; then
-          if (( ${#key} > ${#best_key} )); then
-            best_key="$key"
-          fi
+    for key in "${(@k)GHOSTTY_PROJECT_THEMES}"; do
+      if [[ "$abs_target" == "$key" || "$abs_target" == "$key/"* ]]; then
+        if (( ${#key} > ${#best_key} )); then
+          best_key="$key"
         fi
-      done
-    fi
+      fi
+    done
 
     if [[ -n "$best_key" ]]; then
       theme="${GHOSTTY_PROJECT_THEMES[$best_key]}"
-    elif [[ -z "$theme" ]]; then
+    else
       theme="Vesper"
     fi
   fi
@@ -248,8 +252,14 @@ gproj() {
     --theme="$theme"
 }
 
-# OpenClaw Completion
-source "/Users/tars/.openclaw/completions/openclaw.zsh"
+gproj-web() {
+  gproj "${1:-$PWD}" "Vesper"
+}
 
-# Local machine/private overrides (not tracked)
-[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+gproj-data() {
+  gproj "${1:-$PWD}" "TokyoNight"
+}
+
+gproj-note() {
+  gproj "${1:-$PWD}" "Gruvbox Dark Hard"
+}
