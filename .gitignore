@@ -1,2 +1,5 @@
-.DS_Store
+*.local
+.env
+.env.*
+secrets/
 .DS_Store
