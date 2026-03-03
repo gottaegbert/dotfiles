@@ -265,7 +265,7 @@ gproj-note() {
 }
 
 # Quick project launchers (Ghostty + theme)
-alias gw='gproj-web /Users/tars/Downloads/project/tars/whothree'
+alias gw='gproj-web /Users/tars/Downloads/project/tars/whothree2025'
 alias gf='gproj-data /Users/tars/Downloads/project/tars/frontend'
 alias gm='gproj-note /Users/tars/Downloads/project/tars/mainlife'
 alias gi='gproj-web /Users/tars/Downloads/project/tars/influence-demo'
