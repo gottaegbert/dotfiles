@@ -11,7 +11,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="sunrise"
-neofetch
+command -v neofetch >/dev/null 2>&1 && neofetch
 ls
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
